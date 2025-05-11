@@ -12,8 +12,7 @@ function AppWrapper() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={< MedicalLogo/>} />
-        <Route path="/ekaveeradashboard" element={<AdminDashboard />} />
+        <Route path="/" element={<AdminDashboard />} />
         <Route path="*" element={<Card />} />
       </Routes>
       <Footer />
