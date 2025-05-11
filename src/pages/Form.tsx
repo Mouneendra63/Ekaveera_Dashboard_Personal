@@ -40,7 +40,7 @@ function AdminForm() {
     };
 
     try {
-      const response = await axios.post('http://localhost:3000/api/userDetails', formData);
+      const response = await axios.post('https://ekaveera-backend.onrender.com/api/userDetails', formData);
       setSubmittedData(response.data);
       if (response.status >= 200 && response.status < 300) {
         setAlertComponent(<Success head={"Success"} message={"Your request submitted successfully"} />);

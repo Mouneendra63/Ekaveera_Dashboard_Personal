@@ -66,7 +66,7 @@ export default function Test(): JSX.Element {
   const fetchPatients = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get('http://localhost:3000/api/userDetails');
+      const response = await axios.get('https://ekaveera-backend.onrender.com/api/userDetails');
       
       // Normalize response data to use 'id' consistently
       const normalizedData = response.data.map((patient: any) => ({
@@ -138,7 +138,7 @@ export default function Test(): JSX.Element {
   const markAsComplete = async (patientId: string): Promise<void> => {
     try {
       setIsMarkingComplete(true);
-      await axios.put(`http://localhost:3000/api/userDetails/${patientId}/complete`, { isCompleted: true });
+      await axios.put(`https://ekaveera-backend.onrender.com/api/userDetails/${patientId}/complete`, { isCompleted: true });
       
       // Update local state
       const updatedPatients = patients.map(patient => 
@@ -195,7 +195,7 @@ export default function Test(): JSX.Element {
   
     try {
       // Send new prescription to backend
-      await axios.put(`http://localhost:3000/api/userDetails/${selectedPatient.id}`, {
+      await axios.put(`https://ekaveera-backend.onrender.com/api/userDetails/${selectedPatient.id}`, {
         newPrescription: [
           {
             tablets: newPrescription.tablets,
@@ -207,7 +207,7 @@ export default function Test(): JSX.Element {
       });
   
       // Fetch updated user
-      const res = await axios.get(`http://localhost:3000/api/userDetails/${selectedPatient.id}`);
+      const res = await axios.get(`https://ekaveera-backend.onrender.com/api/userDetails/${selectedPatient.id}`);
       const updatedUser = res.data;
   
       // Normalize updated user data
@@ -249,8 +249,8 @@ export default function Test(): JSX.Element {
   ): Promise<void> => {
     try {
       const endpoint = isPrevious
-        ? `http://localhost:3000/api/userDetails/${patientId}/prescription/${prescriptionId}`
-        : `http://localhost:3000/api/userDetails/${patientId}/newPrescription/${prescriptionId}`;
+        ? `https://ekaveera-backend.onrender.com/api/userDetails/${patientId}/prescription/${prescriptionId}`
+        : `https://ekaveera-backend.onrender.com/api/userDetails/${patientId}/newPrescription/${prescriptionId}`;
   
       await axios.delete(endpoint);
   
@@ -293,7 +293,7 @@ export default function Test(): JSX.Element {
   // Fetch reviews
   async function fetchReviews() {
     try {
-      const res = await axios.get('http://localhost:3000/api/reviews');
+      const res = await axios.get('https://ekaveera-backend.onrender.com/api/reviews');
       
       if (Array.isArray(res.data)) {
         const reviews = res.data;
@@ -338,7 +338,7 @@ export default function Test(): JSX.Element {
   // Download patient data as Excel
   const handleDownload = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/download-excel', {
+      const response = await axios.get('https://ekaveera-backend.onrender.com/api/download-excel', {
         responseType: 'blob', 
       });
 
@@ -367,7 +367,7 @@ export default function Test(): JSX.Element {
   const sendEmail = async (patientId: string) => {
     try {
       setIsEmailSending(true);
-      const response = await axios.post(`http://localhost:3000/api/send-email/${patientId}`);
+      const response = await axios.post(`https://ekaveera-backend.onrender.com/api/send-email/${patientId}`);
       
       if (response.status >= 200 && response.status < 300) {
         setAlertComponent(<Success head={"Success"} message={"Email sent successfully"} />);
@@ -395,7 +395,7 @@ export default function Test(): JSX.Element {
   // Delete patient
   const deletePatient = async (patientId: string) => {
     try {
-      await axios.delete(`http://localhost:3000/api/userDetails/${patientId}`);
+      await axios.delete(`https://ekaveera-backend.onrender.com/api/userDetails/${patientId}`);
       
       // Update state by removing deleted patient
       const updatedPatients = patients.filter(p => p.id !== patientId);
